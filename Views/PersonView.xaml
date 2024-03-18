@@ -1,0 +1,40 @@
+﻿<StackPanel x:Class="DateAppCSharp.Views.PersonView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DateAppCSharp.Views"
+      xmlns:viewModels="clr-namespace:DateAppCSharp.ViewModels"
+      mc:Ignorable="d"
+      Orientation="Vertical"
+      Margin="20">
+    <StackPanel.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"></BooleanToVisibilityConverter>
+    </StackPanel.Resources>
+    <StackPanel.DataContext>
+        <viewModels:PersonViewModel/>
+    </StackPanel.DataContext>
+    <DatePicker SelectedDate="{Binding BirtDate, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"/>
+    <StackPanel Visibility="{Binding IsValid, Converter={StaticResource BoolToVis}}" 
+                Orientation="Horizontal" 
+                Margin="0 150" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="50 0">
+            <TextBlock Text="Age" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Age, Mode=OneWay}" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="50 0">
+            <TextBlock Text="Chinese Zodiac sign" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding ChineseZodiac, Mode=OneWay}" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="50 0">
+            <TextBlock Text="Western Zodiac sign" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding WesternZodiac, Mode=OneWay}" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </StackPanel>
+    <StackPanel Visibility="{Binding IsValid, Converter={StaticResource BoolToVis}}" 
+                Orientation="Vertical" HorizontalAlignment="Center">
+        <TextBlock Visibility="{Binding IsBirthday, Converter={StaticResource BoolToVis}}" Text="Happy Birthday!"/>
+    </StackPanel>
+</StackPanel>
